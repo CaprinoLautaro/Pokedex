@@ -79,7 +79,7 @@ ORDER BY p.numero_pokedex ASC ";
             </thead>
             <tbody>
             <?php while($pokemon = $resultado->fetch_assoc()) { ?>
-                <tr class="fila-pokemon" onclick="window.location='pokemon.php?id=<?php echo $pokemon['id']; ?>';">
+                <tr class="fila-pokemon" onclick="window.location='pokemon.php?id=<?php echo base64_encode($pokemon['id']); ?>';">
                     <td>
                         <img src="uploads/pokemon/<?php echo $pokemon['imagen']; ?>"
                              alt="<?php echo $pokemon['nombre']; ?>"

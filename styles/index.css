@@ -55,3 +55,33 @@ body {
 .fila-pokemon:hover {
     background-color: rgba(0,0,0,0.05) !important;
 }
+.badge-tipo {
+    /* Alineación */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center; /* Evita que se estire hacia arriba/abajo en contenedores flex */
+
+    /* Dimensiones */
+    height: fit-content;   /* Obliga a que la altura sea solo la del contenido */
+    padding: 6px 16px;     /* Menos padding arriba/abajo para que no sea alto */
+    gap: 8px;
+
+    /* Estética */
+    border-radius: 8px;    /* Bordes apenas redondeados para el look rectangular */
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    /* Para que no se rompa el diseño si el nombre es largo */
+    white-space: nowrap;
+}
+
+/* Ajuste para las imágenes dentro del badge */
+.badge-tipo img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
