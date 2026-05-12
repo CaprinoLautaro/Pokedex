@@ -34,8 +34,9 @@
         <span class="navbar-brand mb-0 h1">
             Pokédex
         </span>
-
+        <button type="button" class="btn btn-warning" onclick="window.location.href='./pages/crearPokemon.php'">Agregar Pokemon</button>
     </div>
+
 
 </nav>
 
@@ -43,7 +44,8 @@
 
     <?php
 
-    include $_SERVER['DOCUMENT_ROOT'].'/includes/db.php';
+    // include $_SERVER['DOCUMENT_ROOT'].'/includes/db.php';
+    include("includes/db.php");
 
     $conexion = get_db_connection();
 
@@ -78,8 +80,9 @@ ORDER BY p.numero_pokedex ASC ";
             </tr>
             </thead>
             <tbody>
-            <?php while($pokemon = $resultado->fetch_assoc()) { ?>
-                <tr class="fila-pokemon" onclick="window.location='pokemon.php?id=<?php echo base64_encode($pokemon['id']); ?>';">
+            <?php while ($pokemon = $resultado->fetch_assoc()) { ?>
+                <tr class="fila-pokemon"
+                    onclick="window.location='pokemon.php?id=<?php echo base64_encode($pokemon['id']); ?>';">
                     <td>
                         <img src="uploads/pokemon/<?php echo $pokemon['imagen']; ?>"
                              alt="<?php echo $pokemon['nombre']; ?>"
@@ -93,7 +96,7 @@ ORDER BY p.numero_pokedex ASC ";
                                 <?php echo $pokemon['tipo1_nombre']; ?>
                             </span>
 
-                            <?php if($pokemon['tipo2_nombre']) { ?>
+                            <?php if ($pokemon['tipo2_nombre']) { ?>
                                 <span class="badge-tipo tipo-<?php echo strtolower($pokemon['tipo2_nombre']); ?>">
                                     <img src="assets/types/<?php echo $pokemon['tipo2_imagen']; ?>" width="20">
                                     <?php echo $pokemon['tipo2_nombre']; ?>

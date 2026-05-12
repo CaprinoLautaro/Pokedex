@@ -20,57 +20,83 @@
     >
 </head>
 <body>
-<h1>Crear Pokemon</h1>
-<br><br>
-<form action="./">
-    <label for="nombre">Nombre:</label>
 
-    <input type="text" id="nombre" name="nombre">
-    <br><br>
-    <label for="tipo">Tipo:</label>
-    <select name="tipo" id="tipo">
-        <option value="">Seleccionar tipo</option>
-        <option value="bug">Bug</option>
-        <option value="dark">Dark</option>
-        <option value="dragon">Dragon</option>
-        <option value="electric">Electric</option>
-        <option value="fairy">Fairy</option>
-        <option value="fighting">Fighting</option>
-        <option value="fire">Fire</option>
-        <option value="flying">Flying</option>
-        <option value="ghost">Ghost</option>
-        <option value="grass">Grass</option>
-        <option value="ground">Ground</option>
-        <option value="ice">Ice</option>
-        <option value="normal">Normal</option>
-        <option value="poison">Poison</option>
-        <option value="psychic">Psychic</option>
-        <option value="rock">Rock</option>
-        <option value="steel">Steel</option>
-        <option value="water">Water</option>
+<?php
 
-    </select>
-    <br><br>
-    <label for="numero">Numero:</label>
-    <input type="number" id="numero" name="numero">
-    <br><br>
-    <label for="imagen">Imagen:</label>
-    <input type="file" id="imagen" name="imagen" placeholder="Seleccionar imagen" accept="image/*">
+// include $_SERVER['DOCUMENT_ROOT'].'/includes/db.php';
+include("../includes/db.php");
 
-    <button type="submit">
-        <b>Guardar</b>
-    </button>
-    <button type="reset">
-        <b>Borrar</b>
-    </button>
-    <button type="button" onclick="window.location.href='./'">
-        <b>Volver</b>
-    </button>
-    <br><br>
+$conexion = get_db_connection();
+
+$sql = " select id, nombre
+from tipos
+ORDER BY nombre ASC ";
+$resultado = $conexion->query($sql);
+?>
+
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow p-4 bg-primary-subtle" style="width: 500px; border-radius: 20px;">
+<form action="./pokemonGuardado.php" method="post" enctype="multipart/form-data">
+
+    <h2 class="p-3 text-center">Agregar Pokemon</h2>
+
+    <div class="p-3">
+        <label for="numero">Numero Pokedex:</label>
+        <input type="number" id="numero" name="numero" class="form-control form-control-m">
+    </div>
+
+    <div class="p-3">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control form-control-m">
+    </div>
+
+    <div class="p-3">
+        <label for="tipo1">Tipo Principal:</label>
+        <select name="tipo1" id="tipo1" class="form-control form-control-m" required>
+            <option value="">Seleccionar tipo</option>
+            <?php while ($tipo = $resultado->fetch_assoc()) {
+                echo "<option value='" . $tipo['id'] .  "'>" . $tipo['nombre'] ."</option>";
+            } ?>
+        </select>
+    </div>
+
+    <div class="p-3">
+        <label for="tipo2">Tipo Secundario:</label>
+        <select name="tipo2" id="tipo2" class="form-control form-control-m">
+            <option value="">Seleccionar tipo</option>
+            <?php
+            $resultado->data_seek(0);
+            while ($tipo = $resultado->fetch_assoc()) {
+                echo "<option value='" . $tipo['id'] .  "'>" . $tipo['nombre'] ."</option>";
+            } ?>
+        </select>
+    </div>
+
+    <div class="p-3">
+        <label for="descripcion">Descripcion:</label>
+        <textarea class="form-control" id="descripcion" name="descripcion" class="form-control form-control-m" rows="3"></textarea>
+    </div>
+
+
+    <div class="p-3">
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" class="form-control form-control-m" placeholder="Seleccionar imagen" accept="image/*">
+    </div>
+
+    <div class="w-100 p-3 btn-group" role="group" aria-label="Basic radio toggle button group">
+        <button type="submit" class="btn-check" name="btnradio" id="btnradio1"></button>
+        <label class="btn btn-primary" for="btnradio1">Guardar</label>
+        <button type="reset" class="btn-check" name="btnradio" id="btnradio2"></button>
+        <label class="btn btn-outline-primary" for="btnradio2">Borrar</label>
+
+        <button type="button" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onclick="window.location.href='../index.php'">Volver</button>
+        <label class="btn btn-outline-primary" for="btnradio3">Volver</label>
+    </div>
 
 
 </form>
-
+</div>
+</div>
 
 </body>
 </html>
