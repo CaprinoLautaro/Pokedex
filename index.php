@@ -34,7 +34,7 @@
         <span class="navbar-brand mb-0 h1">
             Pokédex
         </span>
-        <button type="button" class="btn btn-warning" onclick="window.location.href='./pages/crearPokemon.php'">Agregar Pokemon</button>
+
     </div>
 
 
@@ -84,7 +84,7 @@ ORDER BY p.numero_pokedex ASC ";
                 <tr class="fila-pokemon"
                     onclick="window.location='pokemon.php?id=<?php echo base64_encode($pokemon['id']); ?>';">
                     <td>
-                        <img src="uploads/pokemon/<?php echo $pokemon['imagen']; ?>"
+                        <img src="assets/pokemon/<?php echo $pokemon['imagen']; ?>"
                              alt="<?php echo $pokemon['nombre']; ?>"
                              style="width: 50px; height: 50px; object-fit: contain;">
                     </td>
@@ -121,6 +121,11 @@ ORDER BY p.numero_pokedex ASC ";
             <?php } ?>
             </tbody>
         </table>
+        <div class="contenedor-boton-sticky">
+            <button type="button" class="btn btn-warning shadow-sm fw-bold" onclick="window.location.href='./pages/crearPokemon.php'">
+                Agregar Pokémon
+            </button>
+        </div>
     </div>
 
 

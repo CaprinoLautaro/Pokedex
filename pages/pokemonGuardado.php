@@ -45,10 +45,10 @@ $imagen = $_FILES['imagen']['name'];
 
 move_uploaded_file(
         $_FILES['imagen']['tmp_name'],
-        "../assets/img/" . $imagen
+        "../assets/pokemon/" . $imagen
 );
 
-$imagen_final = "img/" . $imagen;
+$imagen_final =  $imagen;
 
 //Valido que no exista el pokemon en la base de datos
 $sql = "SELECT * FROM pokemons WHERE numero_pokedex = ?";

@@ -50,7 +50,7 @@ if (!$pokemon) {
                 <div class="row g-0">
 
                     <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
-                        <img src="uploads/pokemon/<?php echo $pokemon['imagen']; ?>"
+                        <img src="assets/pokemon/<?php echo $pokemon['imagen']; ?>"
                              class="img-fluid"
                              style="max-height: 400px; filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.1));"
                              alt="<?php echo $pokemon['nombre']; ?>">
