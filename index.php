@@ -111,7 +111,7 @@ ORDER BY p.numero_pokedex ASC ";
 
                     <td class="text-center">
                         <a href="editar.php?id=<?php echo $pokemon['id']; ?>" class="btn btn-sm btn-warning">Editar</a>
-                        <a href="eliminar.php?id=<?php echo $pokemon['id']; ?>"
+                        <a href="./admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
                            class="btn btn-sm btn-danger"
                            onclick="return confirm('¿Seguro querés borrar a <?php echo $pokemon['nombre']; ?>?')">
                             Eliminar
