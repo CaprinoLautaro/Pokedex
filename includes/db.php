@@ -4,7 +4,7 @@ function get_db_connection() {
     $usuario = "root";
     $password = "";
     $base_de_datos = "pokedex";
-    $puerto = 3307;
+    $puerto = 3306;
 
     // Creamos la conexión
     $conexion = new mysqli(
