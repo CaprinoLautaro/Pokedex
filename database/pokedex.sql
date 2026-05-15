@@ -28,9 +28,9 @@ CREATE TABLE pokemons (
 );
 
 INSERT INTO usuarios (username, password, is_admin) VALUES
-('admin1', '$2y$10$S66Y9m.H10YvBshP8f.NCOzS8p/E2.8oK.3Kk8I.S6X1W4N2M6S7.', TRUE),
-('admin2', '$2y$10$S66Y9m.H10YvBshP8f.NCOzS8p/E2.8oK.3Kk8I.S6X1W4N2M6S7.', TRUE),
-('admin3', '$2y$10$S66Y9m.H10YvBshP8f.NCOzS8p/E2.8oK.3Kk8I.S6X1W4N2M6S7.', TRUE);
+('admin1', '$2y$10$k8XuDHzHy6Wn.hD.oOusq.L0k.6UpFekWZwnwUCFCflQl59ftnwBC', TRUE),
+('admin2', '$2y$10$k8XuDHzHy6Wn.hD.oOusq.L0k.6UpFekWZwnwUCFCflQl59ftnwBC', TRUE),
+('admin3', '$2y$10$k8XuDHzHy6Wn.hD.oOusq.L0k.6UpFekWZwnwUCFCflQl59ftnwBC', TRUE);
 
 INSERT INTO tipos (id, nombre, imagen) VALUES
 (1, 'Steel', 'steel.svg'),
