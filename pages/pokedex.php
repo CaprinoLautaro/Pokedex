@@ -117,13 +117,12 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
 
                     <?php if ($es_admin): ?>
                         <td class="text-center">
-                            <a href="../admin/editar.php?id=<?php echo $pokemon['id']; ?>"
-                               class="btn btn-sm btn-warning">
+                            <a href="../admin/editar.php?id=<?php echo base64_encode($pokemon['id']); ?>" class="btn btn-warning">
                                 Editar
                             </a>
-                            <a href="../admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
-                               class="btn btn-sm btn-danger"
-                               onclick="return confirm('¿Seguro querés borrar a <?php echo $pokemon['nombre']; ?>?')">
+                            <a href="auth/eliminar.php?id=<?php echo $pokemon['id']; ?>"
+                               class="btn btn-danger"
+                               onclick="event.stopPropagation(); return confirm('¿Estás seguro de que querés eliminar a este Pokémon?');">
                                 Eliminar
                             </a>
                         </td>
