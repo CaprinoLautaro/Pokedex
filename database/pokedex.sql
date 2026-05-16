@@ -28,9 +28,9 @@ CREATE TABLE pokemons (
 );
 
 INSERT INTO usuarios (username, password, is_admin) VALUES
-('admin1', '$2y$10$S66Y9m.H10YvBshP8f.NCOzS8p/E2.8oK.3Kk8I.S6X1W4N2M6S7.', TRUE),
-('admin2', '$2y$10$S66Y9m.H10YvBshP8f.NCOzS8p/E2.8oK.3Kk8I.S6X1W4N2M6S7.', TRUE),
-('admin3', '$2y$10$S66Y9m.H10YvBshP8f.NCOzS8p/E2.8oK.3Kk8I.S6X1W4N2M6S7.', TRUE);
+('admin1', '$2y$10$k8XuDHzHy6Wn.hD.oOusq.L0k.6UpFekWZwnwUCFCflQl59ftnwBC', TRUE),
+('admin2', '$2y$10$k8XuDHzHy6Wn.hD.oOusq.L0k.6UpFekWZwnwUCFCflQl59ftnwBC', TRUE),
+('admin3', '$2y$10$k8XuDHzHy6Wn.hD.oOusq.L0k.6UpFekWZwnwUCFCflQl59ftnwBC', TRUE);
 
 INSERT INTO tipos (id, nombre, imagen) VALUES
 (1, 'Steel', 'steel.svg'),
@@ -81,10 +81,10 @@ INSERT INTO pokemons (numero_pokedex, nombre, tipo1_id, tipo2_id, descripcion, i
                                                                                            (26, 'Raichu', 5, NULL, 'Su larga cola le sirve de toma de tierra para protegerse a sí mismo de su propio alto voltaje.', 'raichu.png'),
                                                                                            (27, 'Sandshrew', 16, NULL, 'Se enrolla en una bola cuando se siente amenazado. Así puede rodar para escapar o atacar.', 'sandshrew.png'),
                                                                                            (28, 'Sandslash', 16, NULL, 'Se enrolla en una bola de pinchos si se siente amenazado. Puede rodar para atacar o escapar.', 'sandslash.png'),
-                                                                                           (29, 'Nidoran♀', 17, NULL, 'Aunque sea pequeño, sus cuernos venenosos lo hacen muy peligroso.', 'nidoran_f.png'),
+                                                                                           (29, 'Nidoran♀', 17, NULL, 'Aunque sea pequeño, sus cuernos venenosos lo hacen muy peligroso.', 'nidoran-f.png'),
                                                                                            (30, 'Nidorina', 17, NULL, 'El cuerno de la hembra crece lentamente. Prefiere los ataques físicos como arañar y morder.', 'nidorina.png'),
                                                                                            (31, 'Nidoqueen', 17, 16, 'Usa su cuerpo blindado con escamas duras para ejecutar potentes ataques.', 'nidoqueen.png'),
-                                                                                           (32, 'Nidoran♂', 17, NULL, 'Mueve sus orejas en cualquier dirección para vigilar. Sus cuernos lanzan un potente veneno.', 'nidoran_m.png'),
+                                                                                           (32, 'Nidoran♂', 17, NULL, 'Mueve sus orejas en cualquier dirección para vigilar. Sus cuernos lanzan un potente veneno.', 'nidoran-m.png'),
                                                                                            (33, 'Nidorino', 17, NULL, 'Muy agresivo, está siempre listo para atacar. El cuerno de su cabeza segrega un potente veneno.', 'nidorino.png'),
                                                                                            (34, 'Nidoking', 17, 16, 'Usa su potente cola en combate para aplastar a su rival y triturarle los huesos.', 'nidoking.png'),
                                                                                            (35, 'Clefairy', 8, NULL, 'Su aspecto adorable y sus andares juguetones lo hacen muy popular.', 'clefairy.png'),

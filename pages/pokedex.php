@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Evita cache: si cerrás sesión, no deja volver con el botón atrás
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../index.php");
     exit;
@@ -17,13 +21,11 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
 
-    <!-- Bootstrap -->
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
             rel="stylesheet"
     >
 
-    <!-- CSS -->
     <link
             rel="stylesheet"
             href="../styles/pokedex.css"
@@ -59,7 +61,7 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
 <div class="container mt-4">
 
     <?php
-    include_once ("../includes/db.php");
+    include("../includes/db.php");
 
     $conexion = get_db_connection();
 
@@ -150,14 +152,19 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
 
                     <?php if ($es_admin): ?>
                         <td class="text-center">
-                            <a href="../admin/editar.php?id=<?php echo base64_encode($pokemon['id']); ?>" class="btn btn-warning">
+
+                            <a href="../admin/editar.php?id=<?php echo base64_encode($pokemon['id']); ?>"
+                               class="btn btn-warning"
+                               onclick="event.stopPropagation();">
                                 Editar
                             </a>
+
                             <a href="../admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
                                class="btn btn-danger"
                                onclick="event.stopPropagation(); return confirm('¿Estás seguro de que querés eliminar a este Pokémon?');">
                                 Eliminar
                             </a>
+
                         </td>
                     <?php endif; ?>
 
