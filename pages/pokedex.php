@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Evita cache: si cerrás sesión, no deja volver con el botón atrás
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 
@@ -154,7 +153,7 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
                                        onclick="event.stopPropagation();">
                                         Editar
                                     </a>
-                                    <a href="../auth/eliminar.php?id=<?php echo $pokemon['id']; ?>"
+                                    <a href="../admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
                                        class="btn btn-sm btn-danger fw-bold"
                                        onclick="event.stopPropagation(); return confirm('¿Estás seguro de que querés eliminar a este Pokémon?');">
                                         Eliminar
