@@ -36,6 +36,15 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
     <div class="container d-flex justify-content-between align-items-center">
         <span class="navbar-brand mb-0 h1">Pokédex</span>
 
+        <div class="mt-3 px-5">
+            <form action="pokedex.php" method="GET" class="d-flex align-items-center gap-2">
+                <a href="pokedex.php" class="btn btn-secondary">Limpiar</a>
+                <input type="text" name="busqueda" class="form-control flex-grow-1 "
+                       placeholder="Buscar Pokemon por nombre..." value="<?php echo isset($_GET['busqueda']) ? $_GET['busqueda'] : ''; ?>">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+
         <div class="d-flex align-items-center gap-3">
             <a href="../auth/logout.php" class="btn btn-sm btn-outline-light">Cerrar sesión</a>
             <a href="../auth/eliminarCuenta.php"
@@ -50,7 +59,7 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
 <div class="container mt-4">
 
     <?php
-    include("../includes/db.php");
+    include_once ("../includes/db.php");
 
     $conexion = get_db_connection();
 
@@ -66,8 +75,32 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
             ORDER BY p.numero_pokedex ASC";
 
     $resultado = $conexion->query($sql);
+
+    $busqueda = isset($_GET['busqueda']) ? mysqli_real_escape_string($conexion, $_GET['busqueda']) : '';
+    if(!empty($busqueda)){
+        $sql = "SELECT p.*,
+                t1.nombre AS tipo1_nombre,
+                t1.imagen AS tipo1_imagen,
+                t2.nombre AS tipo2_nombre,
+                t2.imagen AS tipo2_imagen
+            FROM pokemons p
+            JOIN tipos t1 ON p.tipo1_id = t1.id
+            LEFT JOIN tipos t2 ON p.tipo2_id = t2.id
+            WHERE p.nombre LIKE '%$busqueda%'";
+        $resultado = mysqli_query($conexion,$sql);
+
+        if(mysqli_num_rows($resultado) == 0){
+            echo '<div class="container mt-5 d-flex justify-content-center">
+                    <div class="alert alert-danger text-center shadow-sm w-50">
+                    No se encontraron Pokemones que coincidan con tu busqueda.
+                    </div>
+                  </div>';
+        }
+    }
     ?>
 
+    <?php
+    if (mysqli_num_rows($resultado) > 0):?>
     <div class="table-responsive">
         <table class="table table-hover align-middle shadow-sm">
             <thead class="table-dark">
@@ -120,7 +153,7 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
                             <a href="../admin/editar.php?id=<?php echo base64_encode($pokemon['id']); ?>" class="btn btn-warning">
                                 Editar
                             </a>
-                            <a href="auth/eliminar.php?id=<?php echo $pokemon['id']; ?>"
+                            <a href="../admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
                                class="btn btn-danger"
                                onclick="event.stopPropagation(); return confirm('¿Estás seguro de que querés eliminar a este Pokémon?');">
                                 Eliminar
@@ -145,6 +178,9 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
         <?php endif; ?>
 
     </div>
+    <?php endif; ?>
+
+
 
 </div>
 
