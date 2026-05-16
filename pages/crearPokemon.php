@@ -34,8 +34,8 @@ ORDER BY nombre ASC ";
 $resultado = $conexion->query($sql);
 ?>
 
-<div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="card shadow p-4 bg-primary-subtle" style="width: 500px; border-radius: 20px;">
+<div class="container min-vh-100 d-flex justify-content-center align-items-center py-5">
+    <div class="card shadow p-2 p-md-4 bg-primary-subtle col-11 col-md-8 col-lg-6" style="border-radius: 20px;>
 <form action="./pokemonGuardado.php" method="post" enctype="multipart/form-data">
 
     <h2 class="p-3 text-center">Agregar Pokemon</h2>
@@ -83,14 +83,11 @@ $resultado = $conexion->query($sql);
         <input type="file" id="imagen" name="imagen" class="form-control form-control-m" placeholder="Seleccionar imagen" accept="image/*">
     </div>
 
-    <div class="w-100 p-3 btn-group" role="group" aria-label="Basic radio toggle button group">
-        <button type="submit" class="btn-check" name="btnradio" id="btnradio1"></button>
-        <label class="btn btn-primary" for="btnradio1">Guardar</label>
-        <button type="reset" class="btn-check" name="btnradio" id="btnradio2"></button>
-        <label class="btn btn-outline-primary" for="btnradio2">Borrar</label>
-
-        <button type="button" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onclick="window.location.href='../index.php'">Volver</button>
-        <label class="btn btn-outline-primary" for="btnradio3">Volver</label>
+    <!-- Botones adaptables -->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center p-3 mt-3">
+        <button type="submit" class="btn btn-primary px-4 shadow-sm">Guardar</button>
+        <button type="reset" class="btn btn-outline-secondary px-4">Limpiar</button>
+        <button type="button" class="btn btn-outline-danger px-4" onclick="window.location.href='pokedex.php'">Volver</button>
     </div>
 
 
