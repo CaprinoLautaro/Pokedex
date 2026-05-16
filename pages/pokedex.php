@@ -38,11 +38,16 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
     <div class="container d-flex justify-content-between align-items-center">
         <span class="navbar-brand mb-0 h1">Pokédex</span>
 
-        <div class="mt-3 px-5">
-            <form action="pokedex.php" method="GET" class="d-flex align-items-center gap-2">
+        <div class="px-4 d-flex align-items-center">
+            <form action="pokedex.php" method="GET" class="d-flex align-items-center gap-2 mb-0">
                 <a href="pokedex.php" class="btn btn-secondary">Limpiar</a>
-                <input type="text" name="busqueda" class="form-control flex-grow-1 "
-                       placeholder="Buscar Pokemon por nombre..." value="<?php echo isset($_GET['busqueda']) ? $_GET['busqueda'] : ''; ?>">
+                <input type="text"
+                       name="busqueda"
+                       class="form-control"
+                       style="width: 350px;"
+                       placeholder="Buscar Pokémon por nombre..."
+                       value="<?php echo isset($_GET['busqueda']) ? $_GET['busqueda'] : ''; ?>">
+
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
         </div>
