@@ -3,9 +3,6 @@ session_start();
 include("../includes/db.php");
 $conexion = get_db_connection();
 
-/* =========================
-   PROCESAR FORM (UPDATE)
-========================= */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $id = $_POST['id'];
@@ -65,10 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 }
-
-/* =========================
-   CARGAR DATOS (FORM GET)
-========================= */
 
 if (!isset($_GET['id'])) {
     header("Location: ../pages/pokedex.php");

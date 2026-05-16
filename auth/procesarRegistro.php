@@ -17,20 +17,17 @@ if (empty($username) || empty($password)) {
 
 $conexion = get_db_connection();
 
-// Verificar si el usuario ya existe
 $stmt = $conexion->prepare("SELECT id FROM usuarios WHERE username = ?");
 $stmt->bind_param("s", $username);
 $stmt->execute();
 $stmt->get_result()->fetch_assoc() && header("Location: registro.php?error=existe") && exit();
 
-// Recheck limpio
 $stmt->execute();
 if ($stmt->get_result()->num_rows > 0) {
     header("Location: registro.php?error=existe");
     exit;
 }
 
-// Hashear contraseña e insertar
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 $stmt = $conexion->prepare("INSERT INTO usuarios (username, password, is_admin) VALUES (?, ?, FALSE)");

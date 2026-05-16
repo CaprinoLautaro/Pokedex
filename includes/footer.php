@@ -4,11 +4,11 @@
 
             <div class="col-12 col-md-4 mb-3 mb-md-0">
                 <h5 class="text-warning fw-bold">UNLaM</h5>
-                <p class="small mb-1 text-light">Programacion Web II</p>
+                <p class="small mb-1 text-light">Programación Web II</p>
                 <p class="small mb-0 text-light">Año: 2026</p>
             </div>
             <div class="col-12 col-md-4 text-center">
-                <h5 class="text-warning fw-bold">Proyecto Academico</h5>
+                <h5 class="text-warning fw-bold">Proyecto Académico</h5>
                 <p class="small text-light" style="font-size: 0.8rem;">© 2026 Pokédex Digital. Las imágenes y datos son propiedad de Pokémon Company.</p>
             </div>
             <div class="col-12 col-md-4 mb-3 mb-md-0 text-md-end">

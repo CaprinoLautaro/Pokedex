@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-// Vaciar variables de sesión
 $_SESSION = [];
 session_unset();
 
-// Eliminar cookie de sesión
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
 
@@ -20,7 +18,6 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// Destruir sesión
 session_destroy();
 
 header("Location: ../index.php");

@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
@@ -84,7 +81,6 @@ $resultado = $stmt->get_result();
             <?php
         }
 
-// CASO 2: ya existe
     } else {
         ?>
 
@@ -96,7 +92,6 @@ $resultado = $stmt->get_result();
 
     <?php } ?>
 
-    <!-- BOTÓN SIEMPRE CENTRADO -->
     <button type="button" class="btn btn-primary" onclick="window.location.href='../index.php'">
         Volver
     </button>

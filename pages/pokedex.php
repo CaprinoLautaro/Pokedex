@@ -26,51 +26,19 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
 
 <body class="d-flex flex-column min-vh-100">
 <main class="flex-grow-1">
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
-    <div class="container">
-        <span class="navbar-brand mb-0 h1 fw-bold">Pokédex</span>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPokedex" aria-controls="navbarPokedex" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <?php include("../includes/header.php"); ?>
 
-        <div class="collapse navbar-collapse" id="navbarPokedex">
-            <div class="mx-auto my-3 my-lg-0 px-0 px-lg-4 w-100" style="max-width: 600px;">
-                <form action="pokedex.php" method="GET" class="d-flex gap-2 w-100">
-                    <input type="text"
-                           name="busqueda"
-                           class="form-control"
-                           placeholder="Buscar Pokémon por nombre..."
-                           value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                    <?php if (isset($_GET['busqueda']) && $_GET['busqueda'] !== ''): ?>
-                        <a href="pokedex.php" class="btn btn-secondary">Limpiar</a>
-                    <?php endif; ?>
-                </form>
-            </div>
+    <div class="container mt-4 mb-5">
 
-            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-2 mt-2 mt-lg-0">
-                <a href="../auth/logout.php" class="btn btn-sm btn-outline-light w-100 text-center">Cerrar sesión</a>
-                <a href="../auth/eliminarCuenta.php"
-                   class="btn btn-sm btn-light text-danger fw-bold w-100 text-center"
-                   onclick="return confirm('¿Seguro querés eliminar tu cuenta? Esta acción no se puede deshacer.')">
-                    Eliminar cuenta
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
+        <?php
+        include("../includes/db.php");
+        $conexion = get_db_connection();
 
-<div class="container mt-4 mb-5">
+        $busqueda = isset($_GET['busqueda']) ? mysqli_real_escape_string($conexion, $_GET['busqueda']) : '';
 
-    <?php
-    include("../includes/db.php");
-    $conexion = get_db_connection();
-
-    $busqueda = isset($_GET['busqueda']) ? mysqli_real_escape_string($conexion, $_GET['busqueda']) : '';
-
-    if(!empty($busqueda)){
-        $sql = "SELECT p.*,
+        if(!empty($busqueda)){
+            $sql = "SELECT p.*,
                 t1.nombre AS tipo1_nombre, t1.imagen AS tipo1_imagen,
                 t2.nombre AS tipo2_nombre, t2.imagen AS tipo2_imagen
             FROM pokemons p
@@ -78,107 +46,107 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
             LEFT JOIN tipos t2 ON p.tipo2_id = t2.id
             WHERE p.nombre LIKE '%$busqueda%'
             ORDER BY p.numero_pokedex ASC";
-    } else {
-        $sql = "SELECT p.*,
+        } else {
+            $sql = "SELECT p.*,
                 t1.nombre AS tipo1_nombre, t1.imagen AS tipo1_imagen,
                 t2.nombre AS tipo2_nombre, t2.imagen AS tipo2_imagen
             FROM pokemons p
             JOIN tipos t1 ON p.tipo1_id = t1.id
             LEFT JOIN tipos t2 ON p.tipo2_id = t2.id
             ORDER BY p.numero_pokedex ASC";
-    }
+        }
 
-    $resultado = $conexion->query($sql);
+        $resultado = $conexion->query($sql);
 
-    if(mysqli_num_rows($resultado) == 0){
-        echo '<div class="container mt-5 d-flex justify-content-center">
+        if(mysqli_num_rows($resultado) == 0){
+            echo '<div class="container mt-5 d-flex justify-content-center">
                 <div class="alert alert-danger text-center shadow-sm w-100" style="max-width: 500px;">
                 No se encontraron Pokémones que coincidan con tu búsqueda.
                 </div>
               </div>';
-    }
-    ?>
+        }
+        ?>
 
-    <?php if (mysqli_num_rows($resultado) > 0): ?>
-        <div class="table-responsive card shadow-sm border-0 bg-white" style="transform: none !important; overflow-x: auto;">
-            <table class="table align-middle mb-0" style="min-width: 600px;">
-                <thead class="table-dark">
-                <tr>
-                    <th>Imagen</th>
-                    <th>Tipo</th>
-                    <th>Número</th>
-                    <th>Nombre</th>
-                    <?php if ($es_admin): ?>
-                        <th class="text-center">Acciones</th>
-                    <?php endif; ?>
-                </tr>
-                </thead>
+        <?php if (mysqli_num_rows($resultado) > 0): ?>
+            <div class="table-responsive card shadow-sm border-0 bg-white" style="transform: none !important; overflow-x: auto;">
+                <table class="table align-middle mb-0" style="min-width: 600px;">
+                    <thead class="table-dark">
+                    <tr>
+                        <th class="ps-5 pe-1">Imagen</th>
+                        <th>Tipo</th>
+                        <th>Número</th>
+                        <th>Nombre</th>
+                        <?php if ($es_admin): ?>
+                            <th class="text-center">Acciones</th>
+                        <?php endif; ?>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                <?php while ($pokemon = $resultado->fetch_assoc()) { ?>
-                    <tr class="fila-pokemon"
-                        onclick="window.location='../pokemon.php?id=<?php echo base64_encode($pokemon['id']); ?>';">
+                    <tbody>
+                    <?php while ($pokemon = $resultado->fetch_assoc()) { ?>
+                        <tr class="fila-pokemon"
+                            onclick="window.location='pokemon.php?id=<?php echo base64_encode($pokemon['id']); ?>';">
 
-                        <td>
-                            <img src="../assets/pokemon/<?php echo $pokemon['imagen']; ?>"
-                                 alt="<?php echo $pokemon['nombre']; ?>"
-                                 style="width: 50px; height: 50px; object-fit: contain;">
-                        </td>
+                            <td class="ps-5 pe-1">
+                                <img src="../assets/pokemon/<?php echo $pokemon['imagen']; ?>"
+                                     alt="<?php echo $pokemon['nombre']; ?>"
+                                     style="width: 50px; height: 50px; object-fit: contain;">
+                            </td>
 
-                        <td>
-                            <div class="d-inline-flex flex-wrap gap-1">
+                            <td>
+                                <div class="d-inline-flex flex-wrap gap-1">
                             <span class="badge-tipo tipo-<?php echo strtolower($pokemon['tipo1_nombre']); ?>">
                                 <img src="../assets/types/<?php echo $pokemon['tipo1_imagen']; ?>" width="18">
                                 <?php echo $pokemon['tipo1_nombre']; ?>
                             </span>
 
-                                <?php if ($pokemon['tipo2_nombre']) { ?>
-                                    <span class="badge-tipo tipo-<?php echo strtolower($pokemon['tipo2_nombre']); ?>">
+                                    <?php if ($pokemon['tipo2_nombre']) { ?>
+                                        <span class="badge-tipo tipo-<?php echo strtolower($pokemon['tipo2_nombre']); ?>">
                                     <img src="../assets/types/<?php echo $pokemon['tipo2_imagen']; ?>" width="18">
                                     <?php echo $pokemon['tipo2_nombre']; ?>
                                 </span>
-                                <?php } ?>
-                            </div>
-                        </td>
-
-                        <td class="text-muted">#<?php echo $pokemon['numero_pokedex']; ?></td>
-
-                        <td class="fw-bold text-dark"><?php echo $pokemon['nombre']; ?></td>
-
-                        <?php if ($es_admin): ?>
-                            <td class="text-center">
-                                <div class="d-inline-flex gap-1">
-                                    <a href="../admin/editar.php?id=<?php echo base64_encode($pokemon['id']); ?>"
-                                       class="btn btn-sm btn-warning fw-bold"
-                                       onclick="event.stopPropagation();">
-                                        Editar
-                                    </a>
-                                    <a href="../admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
-                                       class="btn btn-sm btn-danger fw-bold"
-                                       onclick="event.stopPropagation(); return confirm('¿Estás seguro de que querés eliminar a este Pokémon?');">
-                                        Eliminar
-                                    </a>
+                                    <?php } ?>
                                 </div>
                             </td>
-                        <?php endif; ?>
 
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div>
+                            <td class="text-muted">#<?php echo $pokemon['numero_pokedex']; ?></td>
 
-        <?php if ($es_admin): ?>
-            <div class="text-center mt-4 mb-4">
-                <a href="../pages/crearPokemon.php" class="btn btn-warning shadow fw-bold px-4 py-2">
-                    + Agregar Pokémon
-                </a>
+                            <td class="fw-bold text-dark"><?php echo $pokemon['nombre']; ?></td>
+
+                            <?php if ($es_admin): ?>
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-1">
+                                        <a href="../admin/editar.php?id=<?php echo base64_encode($pokemon['id']); ?>"
+                                           class="btn btn-sm btn-warning fw-bold"
+                                           onclick="event.stopPropagation();">
+                                            Editar
+                                        </a>
+                                        <a href="../admin/eliminar.php?id=<?php echo $pokemon['id']; ?>"
+                                           class="btn btn-sm btn-danger fw-bold"
+                                           onclick="event.stopPropagation(); return confirm('¿Estás seguro de que querés eliminar a este Pokémon?');">
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </td>
+                            <?php endif; ?>
+
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
             </div>
+
+            <?php if ($es_admin): ?>
+                <div class="text-center mt-4 mb-4">
+                    <a href="../pages/crearPokemon.php" class="btn btn-warning shadow fw-bold px-4 py-2">
+                        + Agregar Pokémon
+                    </a>
+                </div>
+            <?php endif; ?>
+
         <?php endif; ?>
 
-    <?php endif; ?>
-
-</div>
+    </div>
 </main>
 <?php include("../includes/footer.php"); ?>
 

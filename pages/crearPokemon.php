@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pokédex - Agregar Pokémon</title>
 
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Tu CSS Personalizado -->
-    <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body class="bg-light">
 
@@ -22,13 +19,11 @@ $resultado = $conexion->query($sql);
 ?>
 
 <div class="container py-5">
-    <!-- Tarjeta con el mismo estilo que editar.php (shadow, border-radius, g-0) -->
     <div class="card shadow border-0" style="border-radius: 20px; overflow: hidden;">
         
         <form action="./pokemonGuardado.php" method="post" enctype="multipart/form-data">
             
             <div class="row g-0">
-                <!-- Columna Izquierda: Previsualización de Imagen -->
                 <div class="col-md-5 bg-white p-4 text-center border-end d-flex flex-column justify-content-center align-items-center">
                     <h6 class="text-muted fw-bold mb-3 text-uppercase">Previsualización</h6>
                     <div class="mb-3 d-flex align-items-center justify-content-center" style="min-height: 300px;">
@@ -40,7 +35,6 @@ $resultado = $conexion->query($sql);
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Formulario de Datos -->
                 <div class="col-md-7 p-5">
                     <h3 class="mb-4 text-primary fw-bold">Agregar Nuevo Pokémon</h3>
                     
@@ -85,7 +79,6 @@ $resultado = $conexion->query($sql);
                         <textarea id="descripcion" name="descripcion" class="form-control" rows="4" placeholder="Escribe algo sobre este Pokémon..."></textarea>
                     </div>
 
-                    <!-- Botones -->
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">Guardar Pokémon</button>
                         <a href="pokedex.php" class="btn btn-link text-muted">Cancelar y Volver</a>
@@ -96,7 +89,6 @@ $resultado = $conexion->query($sql);
     </div>
 </div>
 
-<!-- Script para la previsualización de la imagen igual que en editar.php -->
 <script>
     function preview(input) {
         if (input.files && input.files[0]) {

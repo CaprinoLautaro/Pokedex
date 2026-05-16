@@ -28,7 +28,6 @@ if (!$usuario || !password_verify($password, $usuario['password'])) {
     exit;
 }
 
-// Guardar datos en sesión
 $_SESSION['usuario_id'] = $usuario['id'];
 $_SESSION['username']   = $usuario['username'];
 $_SESSION['is_admin']   = (bool) $usuario['is_admin'];

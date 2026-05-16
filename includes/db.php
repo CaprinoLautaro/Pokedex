@@ -6,7 +6,6 @@ function get_db_connection() {
     $base_de_datos = "pokedex";
     $puerto = 3306;
 
-    // Creamos la conexión
     $conexion = new mysqli(
         $host,
         $usuario,
@@ -15,13 +14,10 @@ function get_db_connection() {
         $puerto
     );
 
-    // Manejo de errores
     if ($conexion->connect_error) {
-        // En un entorno real, querrías registrar esto, no solo morir.
         die("Error de conexión: " . $conexion->connect_error);
     }
 
-    // Retornamos la variable $conexion para que el archivo que nos llama pueda usarla.
     return $conexion;
 }
 
