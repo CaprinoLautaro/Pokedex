@@ -24,8 +24,8 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
     <link rel="stylesheet" href="../styles/pokedex.css">
 </head>
 
-<body>
-
+<body class="d-flex flex-column min-vh-100">
+<main class="flex-grow-1">
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
     <div class="container">
         <span class="navbar-brand mb-0 h1 fw-bold">Pokédex</span>
@@ -179,7 +179,7 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
     <?php endif; ?>
 
 </div>
-
+</main>
 <?php include("../includes/footer.php"); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
