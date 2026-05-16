@@ -171,7 +171,7 @@ $es_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
 
         <?php if ($es_admin): ?>
             <div class="text-center mt-4 mb-4">
-                <a href="../admin/crearPokemon.php" class="btn btn-warning shadow fw-bold px-4 py-2">
+                <a href="../pages/crearPokemon.php" class="btn btn-warning shadow fw-bold px-4 py-2">
                     + Agregar Pokémon
                 </a>
             </div>
