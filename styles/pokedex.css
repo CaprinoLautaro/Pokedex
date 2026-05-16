@@ -60,28 +60,63 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    align-self: center; /* Evita que se estire hacia arriba/abajo en contenedores flex */
+    align-self: center;
 
-    /* Dimensiones */
-    height: fit-content;   /* Obliga a que la altura sea solo la del contenido */
-    padding: 6px 16px;     /* Menos padding arriba/abajo para que no sea alto */
+    height: fit-content;
+    padding: 6px 16px;
     gap: 8px;
 
-    /* Estética */
-    border-radius: 8px;    /* Bordes apenas redondeados para el look rectangular */
+
+    border-radius: 8px;
     color: white;
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
 
-    /* Para que no se rompa el diseño si el nombre es largo */
+
     white-space: nowrap;
 }
 
-/* Ajuste para las imágenes dentro del badge */
+
 .badge-tipo img {
     display: block;
     width: 20px;
     height: 20px;
     object-fit: contain;
+}
+
+.no-arrow::after {
+    display: none !important;
+}
+
+
+.dropdown .btn-outline-secondary {
+    font-size: 1.2rem;
+    padding: 0px 10px;
+    line-height: 1.2;
+    border-radius: 8px;
+    border-color: #dee2e6;
+    color: #495057;
+    transition: all 0.2s;
+}
+
+
+.dropdown .btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #ced4da;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    padding: 5px 0;
+}
+
+.dropdown-item {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+}
+
+.dropdown-item:active {
+    background-color: #f8f9fa;
 }

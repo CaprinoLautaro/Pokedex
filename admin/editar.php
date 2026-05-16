@@ -25,31 +25,35 @@ $resultadoTipos = $conexion->query("SELECT id, nombre FROM tipos ORDER BY nombre
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar - <?php echo $pokemon['nombre']; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/pokedex.css">
 </head>
 <body class="bg-light">
-<div class="container py-5">
-    <div class="card shadow border-0" style="border-radius: 20px; overflow: hidden;">
+<div class="container py-4 py-md-5">
+
+    <div class="card shadow border-0" style="border-radius: 20px; overflow: hidden; transform: none !important;">
         <form action="../auth/editarPokemon.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $pokemon['id']; ?>">
 
             <div class="row g-0">
                 <div class="col-md-5 bg-white p-4 text-center border-end">
                     <h6 class="text-muted fw-bold mb-3">IMAGEN ACTUAL</h6>
-                    <img src="../assets/pokemon/<?php echo $pokemon['imagen']; ?>" id="imgPreview" class="img-fluid mb-3" style="max-height: 300px;">
+                    <img src="../assets/pokemon/<?php echo $pokemon['imagen']; ?>" id="imgPreview" class="img-fluid mb-3" style="max-height: 250px; object-fit: contain;">
                     <input type="file" name="imagen" class="form-control" onchange="preview(this)">
                 </div>
 
-                <div class="col-md-7 p-5">
-                    <h3 class="mb-4 text-primary">Editar Datos</h3>
+                <div class="col-md-7 p-4 p-md-5">
+                    <h3 class="mb-4 text-primary text-center text-md-start">Editar Datos</h3>
+
                     <div class="mb-3">
                         <label class="form-label fw-bold">Nombre</label>
                         <input type="text" name="nombre" class="form-control" value="<?php echo $pokemon['nombre']; ?>" required>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-6">
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label fw-bold">Tipo 1</label>
                             <select name="tipo1_id" class="form-select">
                                 <?php while($t = $resultadoTipos->fetch_assoc()): ?>
@@ -57,7 +61,7 @@ $resultadoTipos = $conexion->query("SELECT id, nombre FROM tipos ORDER BY nombre
                                 <?php endwhile; ?>
                             </select>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label fw-bold">Tipo 2</label>
                             <select name="tipo2_id" class="form-select">
                                 <option value="">Ninguno</option>
@@ -67,12 +71,14 @@ $resultadoTipos = $conexion->query("SELECT id, nombre FROM tipos ORDER BY nombre
                             </select>
                         </div>
                     </div>
+
                     <div class="mb-4">
                         <label class="form-label fw-bold">Descripción</label>
                         <textarea name="description" class="form-control" rows="3"><?php echo $pokemon['descripcion']; ?></textarea>
                     </div>
+
                     <button type="submit" class="btn btn-primary w-100 btn-lg">Terminar y Guardar</button>
-                    <a href="../pages/pokedex.php" class="btn btn-link w-100 mt-2 text-muted">Cancelar</a>
+                    <a href="../pages/pokedex.php" class="btn btn-link w-100 mt-2 text-muted text-center d-block text-decoration-none">Cancelar</a>
                 </div>
             </div>
         </form>
